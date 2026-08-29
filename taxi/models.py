@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class Manufactirer(models.Model):
@@ -5,8 +6,8 @@ class Manufactirer(models.Model):
     country = models.CharField(max_length=63)
 
     def __str__(self):
-        return f'{self.name} ({self.country})"
-class Driver(AbctractUser):
+        return f"{self.name} ({self.country})"
+class Driver(AbstractUser):
     license_number = models.CharField(max_length=63, unique=True)
 
 class Car(models.Model):
