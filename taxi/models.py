@@ -1,16 +1,18 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-class Manufactirer(models.Model):
+class Manufacturer(models.Model):
     name = models.CharField(max_length=63, unique=True)
     country = models.CharField(max_length=63)
 
     def __str__(self):
         return f"{self.name} ({self.country})"
+
 class Driver(AbstractUser):
     license_number = models.CharField(max_length=63, unique=True)
 
 class Car(models.Model):
     model = models.CharField(max_length=63)
-    manufactirer = models.ForeignKey(Manufactirer)
-    driver = models.ForeignKey(Driver)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    driver = models.ManyToManyField(settings.AUTH_USER_MODEL)
