@@ -6,9 +6,13 @@ from taxi.models import Manufacturer, Driver, Car
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ['model', 'manufacturer',"driver__username"]
+    list_display = ['model', 'manufacturer',"display_drivers"]
     list_filter = ["manufacturer",]
     search_fields = ['model', 'manufacturer__name',]
+
+    @admin.display(description='Drivers')
+    def display_drivers(self, obj):
+        return ", ".join([driver.username for driver in obj.driver.all()])
 
 @admin.register(Manufacturer)
 class ManufacturerAdmin(admin.ModelAdmin):
