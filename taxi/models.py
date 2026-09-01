@@ -23,7 +23,7 @@ class Driver(AbstractUser):
 
 class Car(models.Model):
     model = models.CharField(max_length=63)
-    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, related_name='cars')
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, related_name="cars")
     driver = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
     class Meta:
