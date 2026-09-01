@@ -29,5 +29,5 @@ class Car(models.Model):
     class Meta:
         ordering = ("model",)
 
-        def __str__(self):
-            return f"{self.model} {self.manufacturer} {self.driver}"
+    def __str__(self):
+        return f"{self.model} {self.manufacturer} {self.driver}"
